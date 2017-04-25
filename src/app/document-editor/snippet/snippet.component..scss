@@ -1,0 +1,22 @@
+.greybg {
+  background-color: #e6e6e6;
+  border-radius: 5%;
+}
+.removeFormattingButton {
+  font-size: 75%;
+  cursor: pointer;
+}
+.unselectable {
+  user-select: none;
+}
+.normalCursor {
+  cursor: default;
+}
+pre {
+  font-family: inherit;
+  margin: auto;
+  display: inline;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}

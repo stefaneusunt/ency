@@ -1,0 +1,17 @@
+<input type="text"><br>
+<button (click)="snippetFromSelection('bold_text')" ><md-icon>format_bold</md-icon></button>
+<button (click)="snippetFromSelection('italic_text')" ><md-icon>format_italic</md-icon></button>
+<button (click)="snippetFromSelection('code')" ><md-icon>code</md-icon></button><br>
+<div class="ency-editor"  (click)="onEmptyClick($event)">
+<span *ngFor="let snip of doc.snippets">
+  <ency-snippet [(textType)]="snip.textType"
+                [(content)]="snip.content"
+                (selId)="snip.id=$event"
+                [selection]="snip.selection"
+                (stylingRemoved)="concatPlainTextSnipps()"
+                (keydown)="handleEnter($event)"
+  ></ency-snippet>
+</span>
+</div>
+
+

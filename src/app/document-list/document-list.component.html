@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="inner-container" *ngFor="let doc of DocServ.documents">
+    <div><ency-document-viewer [doc]="doc" ></ency-document-viewer></div>
+  </div>
+  <div class="add-new-document inner-container" (click)="newDocument()">
+    <div class="center-container">
+      <md-icon class="add-new-icon">add</md-icon>
+      <p class="add-new-text" >New Document</p>
+    </div>
+  </div>
+</div>

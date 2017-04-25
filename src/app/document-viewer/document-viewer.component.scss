@@ -1,0 +1,24 @@
+pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  margin: inherit;
+  display: inline;
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.code {
+  font-family: monospace;
+  background-color: #d6d6d6;
+}
+.renderer {
+  padding: 1em;
+}
+b {
+  font-size: 300%;
+}

@@ -1,0 +1,12 @@
+<div style="display: flex; justify-content: center">
+  <b>{{doc.title}}</b>
+</div>
+<div class="renderer">
+  <pre *ngFor="let snip of doc.snippets"
+       [class.bold]="snip.textType === 'bold_text'"
+       [class.italic]="snip.textType === 'italic_text'"
+       [class.code]="snip.textType === 'code'"
+  >{{snip.content}}</pre>
+</div>
+
+

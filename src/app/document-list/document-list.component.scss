@@ -1,0 +1,60 @@
+@import "../material-theme";
+
+@keyframes oncreate {
+  0% {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  100% {
+
+  }
+}
+
+$preview-height: 200px;
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+}
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  width: $preview-height / 1.414;
+  height: $preview-height;
+  font-size: 25%;
+  margin: 25px;
+  border: 1px solid $divider-color;
+  padding: 8px;
+  user-select: none;
+  cursor: pointer;
+  animation-name: oncreate;
+  animation-duration: 0.2s;
+}
+.add-new-document {
+  border: 2px dashed $divider-color;
+  border-radius: 5%;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+.add-new-icon {
+  font-size: $preview-height / 8;
+  color: $divider-color;
+  user-select: none;
+
+}
+.add-new-text {
+  color: $divider-color;
+  font-size: $preview-height / 16;
+  font-weight: bold;
+}
+.center-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

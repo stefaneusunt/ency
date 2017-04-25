@@ -1,0 +1,58 @@
+@import "material-theme";
+$navbar-size: 50px;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+$preview-height: 200px;
+.preview {
+  border: 1px solid #888888;
+  border-radius: 2px;
+  height: $preview-height;
+  width: $preview-height / 1.414;
+  padding: 5px;
+  font-size: 25%;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow;
+  padding: 10px;
+  width: 100%;
+  margin: 0;
+  background-color: $primary-color;
+  color: $primary-color-text;
+  box-sizing: border-box;
+  position: fixed;
+  height: $navbar-size
+}
+.navbar-spacing {
+  height: $navbar-size;
+}
+.more_button {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  color: $primary-text-color;
+  box-shadow: $shadow;
+}
+.dropdown-content :hover {
+  background-color: #ebebeb;
+}
+.hidden {
+  display: none;
+}
+p {
+  margin: 0;
+  padding: 10px;
+  user-select: none;
+  cursor: pointer;
+}

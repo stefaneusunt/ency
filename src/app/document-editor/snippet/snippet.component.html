@@ -1,0 +1,18 @@
+<span [class.greybg]="textType !== 'plain_text'">
+  <span *ngIf="textType !== 'plain_text'"  class="unselectable normalCursor">
+    <md-icon *ngIf="textType === 'bold_text'">format_bold</md-icon>
+    <md-icon *ngIf="textType === 'code'" >code</md-icon>
+    <md-icon *ngIf="textType === 'italic_text'" >format_italic</md-icon>
+  </span>
+  <pre  style="outline: none;" class="content_span"
+        contenteditable="true"
+        [innerText]="content"
+        (input)="contentChange.emit($event.target.innerText)"
+        spellcheck="false"
+        (keydown)="emulateSpaceKey($event)"
+  ></pre>
+  <md-icon *ngIf="textType !== 'plain_text'"
+           class="removeFormattingButton unselectable"
+           (click)="textTypeChange.emit('plain_text'); stylingRemoved.emit(true)"
+  >clear</md-icon>
+</span>
