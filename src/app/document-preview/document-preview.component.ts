@@ -13,6 +13,7 @@ export class DocumentPreviewComponent implements OnInit {
   @Input() doc: Document;
   console;
   deleteConfirmationVisible = 0;
+  editing = 0;
   constructor(private docServ: DocumentProviderService) {
     this.console = window.console;
   }

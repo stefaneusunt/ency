@@ -1,5 +1,9 @@
 @import "../material-theme";
 
+$close-button-size: 50px;
+$action-button-size: 50px;
+$document-padding: 5%;
+
 @keyframes oncreate {
   0% {
     font-size: 1px;
@@ -27,9 +31,6 @@
   box-shadow: $shadow;
 
 }
-
-$close-button-size: 50px;
-$action-button-size: 50px;
 
 .close-button {
   color: $secondary-text-color;
@@ -84,4 +85,16 @@ $action-button-size: 50px;
 .anim {
   animation-name: oncreate;
   animation-duration: 0.2s;
+}
+.document-preview-lateral-padding {
+  padding-left: $document-padding;
+  padding-right: $document-padding;
+}
+.full-width {
+  width: 100%;
+}
+.document-editor-container {
+  width: 90%;
+  padding: 5%;
+
 }

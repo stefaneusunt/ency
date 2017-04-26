@@ -4,24 +4,34 @@
          (click)="selectedDocIndexChange.emit(-1)">
       <md-icon>close</md-icon>
     </div>
-    <ency-document-viewer [doc]="doc" ></ency-document-viewer>
-    <div class="bottom-buttons">
-      <div class="delete-area-container">
-        <button class="round-buttons red"
-                (click)="deleteConfirmationVisible = (deleteConfirmationVisible + 1) % 2">
-          <md-icon *ngIf="deleteConfirmationVisible == 0">delete_forever</md-icon>
-          <md-icon *ngIf="deleteConfirmationVisible == 1">cancel</md-icon>
-        </button>
-        <div *ngIf="deleteConfirmationVisible" class="delete-area-container anim">
-          <p>Cofirm delete?</p>
-          <p>&nbsp;&nbsp;</p>
-          <md-icon class="icon-size"
-          style="user-select: none; cursor: pointer"
-          (click)="removeSelectedDoc()">delete_forever</md-icon>
-        </div>
+    <div *ngIf="!editing" class="full-width">
+      <div class="document-preview-lateral-padding">
+        <ency-document-viewer [doc]="doc"></ency-document-viewer>
       </div>
-      <button class="round-buttons green" ><md-icon>mode_edit</md-icon></button>
+      <div class="bottom-buttons">
+        <div class="delete-area-container">
+          <button class="round-buttons red"
+                  (click)="deleteConfirmationVisible = (deleteConfirmationVisible + 1) % 2">
+            <md-icon *ngIf="deleteConfirmationVisible == 0">delete_forever</md-icon>
+            <md-icon *ngIf="deleteConfirmationVisible == 1">cancel</md-icon>
+          </button>
+          <div *ngIf="deleteConfirmationVisible" class="delete-area-container anim">
+            <p>Cofirm delete?</p>
+            <p>&nbsp;&nbsp;</p>
+            <md-icon class="icon-size"
+                     style="user-select: none; cursor: pointer"
+                     (click)="removeSelectedDoc()">delete_forever</md-icon>
+          </div>
+        </div>
+        <button class="round-buttons green"
+                (click)="editing=1"><md-icon>mode_edit</md-icon></button>
+      </div>
     </div>
+    <div *ngIf="editing" class="document-editor-container">
+      <ency-editor [doc]="doc" ></ency-editor>
+    </div>
+  </div>
+  <div class="document-preview-lateral-padding">
   </div>
 </div>
 

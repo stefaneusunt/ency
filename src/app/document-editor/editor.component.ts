@@ -8,7 +8,7 @@ import {TextType} from '../data-models/text-type';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent {
 
   console;
   ss;
@@ -29,9 +29,6 @@ export class EditorComponent implements OnInit {
     this.ss2 = this.selServ;
   }
 
-  ngOnInit() {
-    this.concatPlainTextSnipps();
-  }
   onEmptyClick(event) {
     const sel = this.selServ.getSelection();
     console.log('Hey ', sel);
