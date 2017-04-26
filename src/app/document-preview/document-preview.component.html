@@ -1,3 +1,27 @@
-<p>
-  document-preview works!
-</p>
+<div *ngIf="selectedDocIndex != -1" class="modal-overlay">
+  <div class="document-preview-container">
+    <div class="close-button"
+         (click)="selectedDocIndexChange.emit(-1)">
+      <md-icon>close</md-icon>
+    </div>
+    <ency-document-viewer [doc]="doc" ></ency-document-viewer>
+    <div class="bottom-buttons">
+      <div class="delete-area-container">
+        <button class="round-buttons red"
+                (click)="deleteConfirmationVisible = (deleteConfirmationVisible + 1) % 2">
+          <md-icon *ngIf="deleteConfirmationVisible == 0">delete_forever</md-icon>
+          <md-icon *ngIf="deleteConfirmationVisible == 1">cancel</md-icon>
+        </button>
+        <div *ngIf="deleteConfirmationVisible" class="delete-area-container anim">
+          <p>Cofirm delete?</p>
+          <p>&nbsp;&nbsp;</p>
+          <md-icon class="icon-size"
+          style="user-select: none; cursor: pointer"
+          (click)="removeSelectedDoc()">delete_forever</md-icon>
+        </div>
+      </div>
+      <button class="round-buttons green" ><md-icon>mode_edit</md-icon></button>
+    </div>
+  </div>
+</div>
+

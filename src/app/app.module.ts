@@ -12,6 +12,7 @@ import { SelectionService } from './services/selection.service';
 import { DocumentProviderService } from './services/document-provider.service';
 import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
 import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentPreviewComponent } from './document-preview/document-preview.component';
 
 const appRoutes: Routes  = [
   {path: 'document-list', component: DocumentListComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes  = [
     SnippetComponent,
     DocumentViewerComponent,
     DocumentListComponent,
+    DocumentPreviewComponent,
   ],
   imports: [
     BrowserModule,

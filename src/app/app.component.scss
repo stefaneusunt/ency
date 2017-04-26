@@ -27,7 +27,8 @@ $preview-height: 200px;
   color: $primary-color-text;
   box-sizing: border-box;
   position: fixed;
-  height: $navbar-size
+  height: $navbar-size;
+  z-index: 2;
 }
 .navbar-spacing {
   height: $navbar-size;
@@ -39,13 +40,14 @@ $preview-height: 200px;
 }
 .dropdown-content {
   position: absolute;
+  z-index: 2;
   right: 0;
   background-color: white;
   color: $primary-text-color;
   box-shadow: $shadow;
 }
 .dropdown-content :hover {
-  background-color: #ebebeb;
+  background-color: $hover-color;
 }
 .hidden {
   display: none;

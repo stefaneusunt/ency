@@ -1,0 +1,87 @@
+@import "../material-theme";
+
+@keyframes oncreate {
+  0% {
+    font-size: 1px;
+  }
+  100% {}
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.26);
+}
+.document-preview-container {
+  margin: 10% 10% auto;
+  background-color: $primary-color-text;
+  color: $primary-text-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: $shadow;
+
+}
+
+$close-button-size: 50px;
+$action-button-size: 50px;
+
+.close-button {
+  color: $secondary-text-color;
+  font-size: 24px;
+  align-self: flex-end;
+  user-select: none;
+  width: $close-button-size;
+  height: $close-button-size;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.round-buttons {
+  font-size: 20px;
+  border-radius: 100%;
+  border: none;
+  box-shadow: $shadow;
+  width: $action-button-size;
+  height: $action-button-size;
+  margin: 10px;
+  color: $primary-color-text;
+  outline: none;
+  user-select: none;
+}
+.red {
+  background-color: #ff5656;
+}
+.green {
+  background-color: green;
+}
+.delete-area-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: $secondary-text-color;
+}
+.greytext {
+  color: $secondary-text-color
+}
+.icon-size {
+  font-size: 24px;
+}
+.anim {
+  animation-name: oncreate;
+  animation-duration: 0.2s;
+}

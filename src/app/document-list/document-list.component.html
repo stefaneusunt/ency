@@ -1,11 +1,23 @@
 <div class="container">
-  <div class="inner-container" *ngFor="let doc of DocServ.documents">
-    <div><ency-document-viewer [doc]="doc" ></ency-document-viewer></div>
+  <div class="document-with-title-container"
+       *ngFor="let doc of DocServ.documents; let i=index;"
+       (click)="selectedDocIndex=i">
+    <div class="document-container">
+      <div><ency-document-viewer [doc]="doc" ></ency-document-viewer></div>
+    </div>
+    <p>{{doc.title}}</p>
   </div>
-  <div class="add-new-document inner-container" (click)="newDocument()">
+  <div class="add-new-document document-container" (click)="newDocument()">
     <div class="center-container">
       <md-icon class="add-new-icon">add</md-icon>
       <p class="add-new-text" >New Document</p>
     </div>
   </div>
 </div>
+<div *ngIf="selectedDocIndex != -1">
+  <ency-document-preview
+    [(selectedDocIndex)]="selectedDocIndex"
+    [doc]="DocServ.documents[selectedDocIndex]">
+  </ency-document-preview>
+</div>
+

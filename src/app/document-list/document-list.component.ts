@@ -9,7 +9,10 @@ import { Document } from '../data-models/document';
 })
 export class DocumentListComponent implements OnInit {
   DocServ;
+  console;
+  selectedDocIndex: number = -1; // Indexul in cadrul docService
   constructor(private docServ: DocumentProviderService) {
+    this.console = window.console;
     this.DocServ = docServ;
   }
 
