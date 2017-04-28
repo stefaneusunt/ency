@@ -1,6 +1,7 @@
 <div style="display: flex; justify-content: center">
   <b>{{doc.title}}</b>
 </div>
+<br>
 <div class="renderer">
   <pre *ngFor="let snip of doc.snippets"
        [class.bold]="snip.textType === 'bold_text'"

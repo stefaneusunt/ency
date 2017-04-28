@@ -89,6 +89,8 @@ $document-padding: 5%;
 .document-preview-lateral-padding {
   padding-left: $document-padding;
   padding-right: $document-padding;
+  height: 60vh;
+  overflow: auto;
 }
 .full-width {
   width: 100%;
@@ -96,5 +98,4 @@ $document-padding: 5%;
 .document-editor-container {
   width: 90%;
   padding: 5%;
-
 }

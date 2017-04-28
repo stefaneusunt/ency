@@ -34,6 +34,8 @@ $docs-side-margins: 25px;
   padding: 8px;
   user-select: none;
   cursor: pointer;
+  text-overflow: clip;
+  overflow: hidden;
 }
 .document-with-title-container {
   display: flex;

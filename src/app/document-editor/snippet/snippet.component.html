@@ -9,7 +9,7 @@
         [innerText]="content"
         (input)="contentChange.emit($event.target.innerText)"
         spellcheck="false"
-        (keydown)="emulateSpaceKey($event)"
+        (keydown)="emulateSpaceKey($event);moveCursorOnTyping($event)"
   ></pre>
   <md-icon *ngIf="textType !== 'plain_text'"
            class="removeFormattingButton unselectable"

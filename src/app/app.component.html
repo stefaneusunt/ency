@@ -1,12 +1,15 @@
 <div>
   <div class="navbar">
-   <span>Ency</span>
-    <md-icon #menubutton class="more_button" (click)="options_menu_displayed = (options_menu_displayed + 1) % 2">more_vert</md-icon>
+    <span>Ency</span>
+    <md-icon #menubutton class="more_button">more_vert</md-icon>
   </div>
   <div class="navbar-spacing"></div>
-  <div #dd class="dropdown-content" [class.hidden]="options_menu_displayed" (blur)="options_menu_displayed=0">
-    <p>Export documents as JSON</p>
-    <p>Import documents from JSON</p>
+  <div class="dropdown-content" [class.hidden]="!options_menu_displayed">
+    <p (click)="exportJSON()" >Export documents as JSON</p>
+    <p (click)="hidden_file_input.click()" >Import documents from JSON</p>
   </div>
   <router-outlet></router-outlet>
+  <!-- Un input ascuns pentru functia de importat JSON -->
+  <input #hidden_file_input type="file" accept="application/json"
+         (change)="importJSON(hidden_file_input.files[0])" hidden>
 </div>

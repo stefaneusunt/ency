@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
 import { SnippetModel } from '../data-models/snippet-model';
 import {SelectionService} from '../services/selection.service';
 import {TextType} from '../data-models/text-type';
@@ -113,17 +113,17 @@ export class EditorComponent {
     this.doc.snippets = new_snippets;
   }
   handleEnter(event) {
-    //Cand dau ENTER intr-un snippet se duce cursorul las inceputul
-    //Textului, este datoria mea sa rezolv asta
+    // Cand dau ENTER intr-un snippet se duce cursorul las inceputul
+    // Textului, este datoria mea sa rezolv asta
     /*console.log('Tasta apasata:');
     console.log('#', event.key, '#');*/
     if (event.key === 'Enter') {
-      //Dezactivam comportamentul default al Enterului si il emulez eu cum trebuie
+      // Dezactivam comportamentul default al Enterului si il emulez eu cum trebuie
       event.preventDefault();
       const sel = this.selServ.getSelection();
-      //const pos = SelectionService.getCursorPos();
-      //this.contentChange.emit(this.content.slice(0, pos) + '\n\n' + this.content.slice(pos));
-      //Folosesc mecanismul de selectie unica ca sa pun cursorul unde trebuie la update-ul view-ului
+      // const pos = SelectionService.getCursorPos();
+      // this.contentChange.emit(this.content.slice(0, pos) + '\n\n' + this.content.slice(pos));
+      // Folosesc mecanismul de selectie unica ca sa pun cursorul unde trebuie la update-ul view-ului
       let snip_index;
       for (let i = 0; i < this.doc.snippets.length; i++) {
         if (this.doc.snippets[i].id == sel.startId) {
@@ -131,12 +131,12 @@ export class EditorComponent {
           break
         }
       }
-      //Am gasit indexul snipetului selectat in lista de snippeturi
-      //Caracterul de linie noua variaza. depinzand daca suntem la ultimul snipet in utlimul caracter sau nu
+      // Am gasit indexul snipetului selectat in lista de snippeturi
+      // Caracterul de linie noua variaza. depinzand daca suntem la ultimul snipet in utlimul caracter sau nu
       let linebreak = '\n';
       let pos = sel.startOffset + 1;
       if (snip_index === this.doc.snippets.length - 1 && sel.startOffset === this.doc.snippets[snip_index].content.length) {
-        linebreak = '\n\n';
+        linebreak = '\n';
         pos++;
       }
       const cont = this.doc.snippets[snip_index].content;
@@ -144,4 +144,6 @@ export class EditorComponent {
       this.doc.snippets[snip_index].selection = [pos, pos];
     }
   }
+
+
 }

@@ -39,6 +39,6 @@ const appRoutes: Routes  = [
     SelectionService,
     DocumentProviderService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -57,4 +57,26 @@ export class SnippetComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.selection = [sel.startOffset + 1, sel.startOffset + 1];
     }
   }
+  moveCursorOnTyping(event) {
+    // Ma ocup de taste la mana, ca comportamentul default ma incurca
+    console.log(event.key);
+    const sel = this.selServ.getSelection();
+    if (event.key !== 'enter' && event.key !== ' ' && event.key.length === 1) {
+      // Punem tastele la mana
+      event.preventDefault();
+      const c = this.content;
+      this.contentChange.emit(c.slice(0, sel.startOffset) + event.key +
+        c.slice(sel.endOffset) );
+      this.selection = [sel.startOffset + 1, sel.startOffset + 1];
+    }
+    if (event.key.toLowerCase() === 'backspace') {
+      event.preventDefault();
+      // Nu facem nimic daca suntem deja la inceputul randului
+      if (sel.startOffset !== 0) {
+        const c = this.content;
+        this.contentChange.emit(c.slice(0, sel.startOffset - 1) + c.slice(sel.startOffset));
+        this.selection = [sel.startOffset - 1, sel.startOffset - 1];
+      }
+    }
+  }
 }

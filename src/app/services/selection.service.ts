@@ -41,10 +41,10 @@ export class SelectionService {
     const range = document.createRange();
     const sel = window.getSelection();
     let textnode;
-    console.log('Element de selectat: ');
-    console.log(element);
-    console.log('Copii:');
-    console.log(element.childNodes);
+    // console.log('Element de selectat: ');
+    // console.log(element);
+    // console.log('Copii:');
+    // console.log(element.childNodes);
     if (element.childNodes.length === 1 && element.nodeName !== '#text') {
       // Cazul normal, un element cu un singur textnode in interior
       textnode = element.firstChild;
@@ -102,8 +102,8 @@ export class SelectionService {
     }
     let startId, endId;
     for (const id in this.snippets_spans) {
-      console.log('snippets_span['+ id + '].firstChild', this.snippets_spans[id].firstChild);
-      console.log('sel[0] ', _sel[0]);
+      // console.log('snippets_span['+ id + '].firstChild', this.snippets_spans[id].firstChild);
+      // console.log('sel[0] ', _sel[0]);
       if (this.snippets_spans[id].firstChild === _sel[0]) {
         startId = id;
       }

@@ -1,4 +1,7 @@
-<input type="text"><br>
+<p>Title</p>
+<input  [(ngModel)]="doc.title" type="text"><br>
+<br>
+<p>Content</p>
 <button (click)="snippetFromSelection('bold_text')" ><md-icon>format_bold</md-icon></button>
 <button (click)="snippetFromSelection('italic_text')" ><md-icon>format_italic</md-icon></button>
 <button (click)="snippetFromSelection('code')" ><md-icon>code</md-icon></button><br>
