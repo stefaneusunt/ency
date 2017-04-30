@@ -1,7 +1,7 @@
 <div *ngIf="selectedDocIndex != -1" class="modal-overlay">
   <div class="document-preview-container">
     <div class="close-button"
-         (click)="selectedDocIndexChange.emit(-1)">
+         (click)="selectedDocIndexChange.emit(-1); DocServ.saveToLocalStorage()">
       <md-icon>close</md-icon>
     </div>
     <div *ngIf="!editing" class="full-width">
@@ -20,7 +20,7 @@
             <p>&nbsp;&nbsp;</p>
             <md-icon class="icon-size"
                      style="user-select: none; cursor: pointer"
-                     (click)="removeSelectedDoc()">delete_forever</md-icon>
+                     (click)="removeSelectedDoc(); DocServ.saveToLocalStorage()">delete_forever</md-icon>
           </div>
         </div>
         <button class="round-buttons green"

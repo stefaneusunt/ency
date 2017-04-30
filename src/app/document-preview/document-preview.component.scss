@@ -13,7 +13,7 @@ $document-padding: 5%;
 
 .modal-overlay {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   width: 100%;
@@ -89,7 +89,7 @@ $document-padding: 5%;
 .document-preview-lateral-padding {
   padding-left: $document-padding;
   padding-right: $document-padding;
-  height: 60vh;
+  height: calc(75vh - 9em);
   overflow: auto;
 }
 .full-width {

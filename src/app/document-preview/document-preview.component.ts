@@ -11,11 +11,11 @@ export class DocumentPreviewComponent implements OnInit {
   @Input() selectedDocIndex: number;
   @Output() selectedDocIndexChange: EventEmitter<number> = new EventEmitter();
   @Input() doc: Document;
-  console;
   deleteConfirmationVisible = 0;
   editing = 0;
+  DocServ;
   constructor(private docServ: DocumentProviderService) {
-    this.console = window.console;
+    this.DocServ = docServ;
   }
 
   ngOnInit() {

@@ -1,6 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import { DocumentProviderService } from './services/document-provider.service';
 import * as FileSaver from 'file-saver';
+import { Document } from './data-models/document';
 
 @Component({
   selector: 'ency-root',
@@ -53,7 +54,13 @@ export class AppComponent {
     read.readAsText(file);
     read.onloadend = () => {
       console.log(read.result);
-      this.docServ.documents = JSON.parse(read.result);
+      // this.docServ.documents = JSON.parse(read.result);
+      try {
+        const data_struct = JSON.parse(read.result);
+        this.docServ.documents = data_struct;
+      } catch (SyntaxError) {
+        console.log('Invalid JSON!');
+      }
     };
   }
 }
