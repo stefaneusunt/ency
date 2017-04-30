@@ -1,3 +1,3 @@
 # Ency
 
-A minimal document creatin/manager web app. Works offline too.
+A minimal document creation/manager web app. Works offline too.
