@@ -4,7 +4,7 @@ import {EditorSelection} from '../document-editor/editor-selection';
 @Injectable()
 export class SelectionService {
 
-  snippets_spans = {};
+  snippets_pres = {};
   free_id = 0;
 
   static mergeElementChilds(node: Element): Element {
@@ -35,6 +35,39 @@ export class SelectionService {
       console.log('WARNING: selectElement got a null node from somewhere!');
       return;
     }
+
+  }
+
+  static getSelectionWithElement(): [any, any, number, number] {
+    const sel = document.getSelection();
+    return [sel.anchorNode, sel.focusNode, sel.anchorOffset, sel.focusOffset];
+  }
+  /*
+  static getCursorPos(): number {
+    return SelectionService.getSelectionWithElement()[2];
+  }
+  static setCursorPos(pos: number) {
+    const sel = SelectionService.getSelectionWithElement();
+    sel[2] = pos;
+    sel[3] = pos;
+    SelectionService.selectElement(sel[0], sel[2], sel[3]);
+  }
+  */
+  constructor() { }
+
+  addSnippetSpan(span_node): number {
+    this.snippets_pres[this.free_id] = span_node;
+    this.free_id++;
+    return this.free_id - 1;
+  }
+
+  removeSnippetSpan(id: number) {
+    delete this.snippets_pres[id];
+  }
+
+  select(id: number, start: number, end: number) {
+    // SelectionService.selectElement(this.snippets_pres[id], start, end);
+    const element = this.snippets_pres[id];
     // IMPORTANT
     // Aparent eu nu selectez un span sau un pre, ci selectez
     // textnodul ce este copilul elementului
@@ -64,35 +97,6 @@ export class SelectionService {
     sel.addRange(range);
   }
 
-  static getSelectionWithElement(): [any, any, number, number] {
-    const sel = document.getSelection();
-    return [sel.anchorNode, sel.focusNode, sel.anchorOffset, sel.focusOffset];
-  }
-  static getCursorPos(): number {
-    return SelectionService.getSelectionWithElement()[2];
-  }
-  static setCursorPos(pos: number) {
-    const sel = SelectionService.getSelectionWithElement();
-    sel[2] = pos;
-    sel[3] = pos;
-    SelectionService.selectElement(sel[0], sel[2], sel[3]);
-  }
-  constructor() { }
-
-  addSnippetSpan(span_node): number {
-    this.snippets_spans[this.free_id] = span_node;
-    this.free_id++;
-    return this.free_id - 1;
-  }
-
-  removeSnippetSpan(id: number) {
-    delete this.snippets_spans[id];
-  }
-
-  select(id: number, start: number, end: number) {
-    SelectionService.selectElement(this.snippets_spans[id], start, end);
-  }
-
   getSelection(): EditorSelection {
     // f -> [id, start, end]
     const _sel = SelectionService.getSelectionWithElement();
@@ -101,13 +105,13 @@ export class SelectionService {
       return {startId: undefined, endId: undefined, startOffset: 0, endOffset: 0};
     }
     let startId, endId;
-    for (const id in this.snippets_spans) {
-      // console.log('snippets_span['+ id + '].firstChild', this.snippets_spans[id].firstChild);
+    for (const id in this.snippets_pres) {
+      // console.log('snippets_span['+ id + '].firstChild', this.snippets_pres[id].firstChild);
       // console.log('sel[0] ', _sel[0]);
-      if (this.snippets_spans[id].firstChild === _sel[0]) {
+      if (this.snippets_pres[id] === _sel[0].parentElement) {
         startId = id;
       }
-      if (this.snippets_spans[id].firstChild === _sel[1]) {
+      if (this.snippets_pres[id] === _sel[1].parentElement) {
         endId = id;
       }
     }

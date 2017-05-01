@@ -9,10 +9,6 @@ import {TextType} from '../data-models/text-type';
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent {
-
-  console;
-  ss;
-  ss2;
   @Input() doc; // Documentul de intrare cu care lucram
 
   static newSnippData(textType: TextType, content: string, selectOnCreate?): SnippetModel {
@@ -23,16 +19,13 @@ export class EditorComponent {
     return {textType: textType, content: content, id: -1, selection: soc};
   }
 
-  constructor(private el: ElementRef, private selServ: SelectionService) {
-    this.console = window.console;
-    this.ss = SelectionService;
-    this.ss2 = this.selServ;
+  constructor(private selServ: SelectionService) {
   }
 
   onEmptyClick(event) {
     const sel = this.selServ.getSelection();
     console.log('Hey ', sel);
-    console.log('event.target.classname: ', event.target.className)
+    console.log('event.target.classname: ', event.target.className);
     const emptySnip: SnippetModel = {textType: 'plain_text', content: '\u200B', id: -1, selection: [0, 0]};
     if (event.target.className.trim() === 'ency-editor' && sel.startId === undefined) {
       // Daca nu-s snippeturi il punem pe ala gol si am terminat
@@ -52,7 +45,6 @@ export class EditorComponent {
         this.selServ.select(lastSnip.id, cursPos, cursPos);
       }
     }
-    console.log(this.doc.snippets)
   }
   snippetFromSelection(textType: TextType) {
     const sel = this.selServ.getSelection();
@@ -67,15 +59,12 @@ export class EditorComponent {
       // Suntem in acelasi snippet
       let index; // Indexului snippetului  cu care lucram
       for (let i = 0; i < this.doc.snippets.length; i++) {
-        //console.log('Se compara ' + this.doc.snippets[i].id + ' cu ' + sel.startId);
+        // Nu merge cu triplu egal (===)
         if (this.doc.snippets[i].id == sel.startId) {
           index = i;
           break;
         }
       }
-      //console.log('startId: ' + sel.startId + ' endId: ' + sel.endId);
-      //console.log('starOffset: ' + sel.startOffset + ' endOffset: ' + sel.endOffset);
-      //console.log('index: ' + index);
       // Continutul noului snippet
       const stylecont = this.doc.snippets[index].content.slice(sel.startOffset, sel.endOffset);
       const selSnippCont = this.doc.snippets[index].content;
@@ -128,7 +117,7 @@ export class EditorComponent {
       for (let i = 0; i < this.doc.snippets.length; i++) {
         if (this.doc.snippets[i].id == sel.startId) {
           snip_index = i;
-          break
+          break;
         }
       }
       // Am gasit indexul snipetului selectat in lista de snippeturi
@@ -136,7 +125,7 @@ export class EditorComponent {
       let linebreak = '\n';
       let pos = sel.startOffset + 1;
       if (snip_index === this.doc.snippets.length - 1 && sel.startOffset === this.doc.snippets[snip_index].content.length) {
-        linebreak = '\n';
+        linebreak = '\n\n';
         pos++;
       }
       const cont = this.doc.snippets[snip_index].content;

@@ -1,10 +1,8 @@
 import {
-  Component, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy, AfterViewInit, AfterViewChecked,
-  AfterContentChecked
+  Component, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy, AfterViewChecked
 } from '@angular/core';
 import { TextType } from '../../data-models/text-type';
 import { SelectionService } from '../../services/selection.service';
-import {EditorSelection} from "../editor-selection";
 
 @Component({
   selector: 'ency-snippet',
@@ -45,23 +43,27 @@ export class SnippetComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  emulateSpaceKey(event) {
-    if (event.key === ' ') {
-      //Introducem un no break space la pozitia cursorului si actualizam cursorul
-      // Aparent cand se schimba continutul (componenta -> view) cursorul este
-      // mutat la inceput, eu trebuie sa contracarez asta
-      event.preventDefault();
-      const c = this.content;
+  updateContent(event) {
+    // Scotem zero-width whitespace-ul daupa ce s-a tasta ceva fiindca produce
+    // comportamente dubioase daca e lasat acolo
+    let content = event.target.innerText;
+    if (content.replace('\u200B', '').trim() !== '') {
+      content = content.replace('\u200B', '');
       const sel = this.selServ.getSelection();
-      this.contentChange.emit(c.slice(0, sel.startOffset) + '\u2004' + c.slice(sel.startOffset));
-      this.selection = [sel.startOffset + 1, sel.startOffset + 1];
+      this.selection = [sel.startOffset, sel.endOffset];
     }
+    this.contentChange.emit(content);
   }
+
   moveCursorOnTyping(event) {
     // Ma ocup de taste la mana, ca comportamentul default ma incurca
     console.log(event.key);
     const sel = this.selServ.getSelection();
-    if (event.key !== 'enter' && event.key !== ' ' && event.key.length === 1) {
+    if (event.key !== ' ' && event.key.length === 1) {
+      if (event.getModifierState('Control')) {
+        // Tasta control e apasata, lasam browser-ul sa faca ce stie
+        return;
+      }
       // Punem tastele la mana
       event.preventDefault();
       const c = this.content;

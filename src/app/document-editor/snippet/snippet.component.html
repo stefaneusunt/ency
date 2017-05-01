@@ -7,9 +7,9 @@
   <pre  style="outline: none;" class="content_span"
         contenteditable="true"
         [innerText]="content"
-        (input)="contentChange.emit($event.target.innerText)"
+        (input)="updateContent($event)"
         spellcheck="false"
-        (keydown)="emulateSpaceKey($event);moveCursorOnTyping($event)"
+        (keydown)="moveCursorOnTyping($event)"
   ></pre>
   <md-icon *ngIf="textType !== 'plain_text'"
            class="removeFormattingButton unselectable"
