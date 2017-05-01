@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {EditorSelection} from '../document-editor/editor-selection';
+import { EditorSelection } from '../data-models/editor-selection';
 
 @Injectable()
 export class SelectionService {
@@ -42,17 +42,7 @@ export class SelectionService {
     const sel = document.getSelection();
     return [sel.anchorNode, sel.focusNode, sel.anchorOffset, sel.focusOffset];
   }
-  /*
-  static getCursorPos(): number {
-    return SelectionService.getSelectionWithElement()[2];
-  }
-  static setCursorPos(pos: number) {
-    const sel = SelectionService.getSelectionWithElement();
-    sel[2] = pos;
-    sel[3] = pos;
-    SelectionService.selectElement(sel[0], sel[2], sel[3]);
-  }
-  */
+
   constructor() { }
 
   addSnippetSpan(span_node): number {
@@ -74,10 +64,6 @@ export class SelectionService {
     const range = document.createRange();
     const sel = window.getSelection();
     let textnode;
-    // console.log('Element de selectat: ');
-    // console.log(element);
-    // console.log('Copii:');
-    // console.log(element.childNodes);
     if (element.childNodes.length === 1 && element.nodeName !== '#text') {
       // Cazul normal, un element cu un singur textnode in interior
       textnode = element.firstChild;
@@ -98,7 +84,6 @@ export class SelectionService {
   }
 
   getSelection(): EditorSelection {
-    // f -> [id, start, end]
     const _sel = SelectionService.getSelectionWithElement();
     console.log('_sel este ', _sel);
     if (_sel[0] === null) {
@@ -106,8 +91,7 @@ export class SelectionService {
     }
     let startId, endId;
     for (const id in this.snippets_pres) {
-      // console.log('snippets_span['+ id + '].firstChild', this.snippets_pres[id].firstChild);
-      // console.log('sel[0] ', _sel[0]);
+      // snippets_pres contine <pre>-uri, Selection API imi da textnode-uri, care sunt copii <pre>-urilor
       if (this.snippets_pres[id] === _sel[0].parentElement) {
         startId = id;
       }
