@@ -7,7 +7,7 @@
   <pre  style="outline: none;" class="content_span"
         contenteditable="true"
         [innerText]="content"
-        (input)="updateContent($event)"
+        (input)="contentChange.emit($event.target.innerText)"
         spellcheck="false"
         (keydown)="moveCursorOnTyping($event)"
   ></pre>

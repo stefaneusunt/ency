@@ -43,18 +43,6 @@ export class SnippetComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  updateContent(event) {
-    // Scotem zero-width whitespace-ul daupa ce s-a tasta ceva fiindca produce
-    // comportamente dubioase daca e lasat acolo
-    let content = event.target.innerText;
-    if (content.replace('\u200B', '').trim() !== '') {
-      content = content.replace('\u200B', '');
-      const sel = this.selServ.getSelection();
-      this.selection = [sel.startOffset, sel.endOffset];
-    }
-    this.contentChange.emit(content);
-  }
-
   moveCursorOnTyping(event) {
     // Ma ocup de taste la mana, ca comportamentul default ma incurca
     console.log(event.key);
